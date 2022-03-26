@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler">
+      <UniqueIdentifier>{06d83981-557d-4b78-a77f-9397c5ed236a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Lexer">
+      <UniqueIdentifier>{591f5160-43ab-4688-a841-813e56069e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Lexer\Token">
+      <UniqueIdentifier>{a391cbc8-602c-472a-9232-f4e97ade278c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Errors">
+      <UniqueIdentifier>{a916bf3c-5e49-4297-a33d-6a608ba77b7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Logs">
+      <UniqueIdentifier>{e1639558-60c0-44b3-bb3d-6e6073b0f8b1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="lexer.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="compiler_errors.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Errors</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Logs</Filter>
+    </ClCompile>
+    <ClCompile Include="token.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Lexer\Token</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lexer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="token.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="compiler_errors.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="code.cpm">
+      <Filter>Исходные файлы</Filter>
+    </None>
+  </ItemGroup>
+</Project>
