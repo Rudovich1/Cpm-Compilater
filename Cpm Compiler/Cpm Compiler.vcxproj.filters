@@ -25,7 +25,7 @@
     <Filter Include="Исходные файлы\Cpm Compiler\Errors">
       <UniqueIdentifier>{a916bf3c-5e49-4297-a33d-6a608ba77b7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Cpm Compiler\Logs">
+    <Filter Include="Исходные файлы\Cpm Compiler\Errors\Logs">
       <UniqueIdentifier>{e1639558-60c0-44b3-bb3d-6e6073b0f8b1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -39,11 +39,11 @@
     <ClCompile Include="compiler_errors.cpp">
       <Filter>Исходные файлы\Cpm Compiler\Errors</Filter>
     </ClCompile>
-    <ClCompile Include="log.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Logs</Filter>
-    </ClCompile>
     <ClCompile Include="token.cpp">
       <Filter>Исходные файлы\Cpm Compiler\Lexer\Token</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Errors\Logs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +54,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="compiler_errors.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

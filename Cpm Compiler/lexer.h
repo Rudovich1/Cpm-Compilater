@@ -14,11 +14,12 @@ class lexer
 
 	std::string separate_symbols = { ' ', '\n', ';', '(', ')', '=', '+', '-', '"', '\r'};
 
+
 public:
 
-	explicit lexer(const std::string& file_path);
-
 	void generate_tokens();
+
+	explicit lexer(const std::string& file_path);
 
 	void print_tokens();
 };

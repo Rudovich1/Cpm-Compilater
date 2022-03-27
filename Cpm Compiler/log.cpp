@@ -1,31 +1,16 @@
+#include "log.h"
 #include <iostream>
 #include <fstream>
 
-class logging {
-	
-	virtual void to_log() = 0;
+void file_logging::to_log(const std::string& messange, const std::string& file_name){
 
-};
+	std::ofstream file_log(file_name);
+	file_log << time << ": " << file_name << '\n';
 
-class file_logging : logging {
-public:
+}
 
-	static void to_log(const std::string& messange, const std::string& file_name = "log.txt") {
+void stream_logging::to_log(const std::string& messange){
 
-		std::ofstream file_log(file_name);
-		file_log << time << ": " << file_name << '\n';
-		
-	}
+	std::cout << time << ": " << messange << '\n';
 
-};
-
-class stream_logging : logging {
-public:
-
-	static void to_log(const std::string& messange) {
-
-		std::cout << time << ": " << messange << '\n';
-
-	}
-
-};
+}

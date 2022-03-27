@@ -1,41 +1,25 @@
+#include <iostream>
 #include "lexer.h"
 #include "compiler_errors.h"
 #include "token.h"
-#include <iostream>
-
-#ifdef DEBUG
-	#include "log.cpp"
-#endif
 
 
 lexer::lexer(const std::string & file_path) : file_path(file_path) {
 
-	try {
+	std::ifstream row_code(file_path, std::ios::binary);
+	current_token = array_of_tokens.begin();
+	current_token_in_code = { 1,1 };
 
-		std::ifstream row_code(file_path, std::ios::binary);
-		current_token = array_of_tokens.begin();
-		current_token_in_code = { 1,1 };
-
-		if (!row_code.is_open()) {
-			compiler_errors::error_message(compiler_errors_type::LEXER, "could not open the file");
-		}
+	if (!row_code.is_open()) {
+		compiler_errors::error_message(compiler_errors_type::LEXER, "could not open the file");
+	}
 		
-		char temp_ch;
-		while (row_code.get(temp_ch)) {
-			cpm_code.push_back(temp_ch);
-		}
-		row_code.close();
+	char temp_ch;
+	while (row_code.get(temp_ch)) {
+		cpm_code.push_back(temp_ch);
 	}
-	catch (std::string& error_information) {
-	
-		#ifdef DEBUG
+	row_code.close();
 
-			file_logging::to_log(error_information);
-			stream_logging::to_log(error_information);
-
-		#endif // DEBUG
-
-	}
 }
 
 void lexer::generate_tokens(){
@@ -67,7 +51,7 @@ void lexer::generate_tokens(){
 				}
 				lexeme.clear();
 				array_of_tokens.push_back(token(std::string(1, '\"'), current_token_in_code));
-				lexeme = i;
+				lexeme += i;
 				quotation_open = true;
 			}
 			++current_token_in_code.second;
@@ -104,6 +88,9 @@ void lexer::generate_tokens(){
 		}
 		lexeme += i;
 		++current_token_in_code.second;
+	}
+	if (quotation_open) {
+		compiler_errors::error_message(compiler_errors_type::PARSER, "missing closing quotation mark", current_token_in_code);
 	}
 	if (!lexeme.empty()) {
 		--current_token_in_code.second;

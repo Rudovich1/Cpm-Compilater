@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="compiler_errors.h" />
     <ClInclude Include="lexer.h" />
+    <ClInclude Include="log.h" />
     <ClInclude Include="token.h" />
   </ItemGroup>
   <ItemGroup>

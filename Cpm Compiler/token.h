@@ -24,15 +24,15 @@ class token
 	token_type type;
 	std::pair<int, int> position;
 
+	static token_type lexeme_to_token(std::string& lexeme);
+
+	static bool is_string(const std::string& lexeme);
+	static bool is_int(const std::string& lexeme);
+	static bool is_float(const std::string& lexeme);
+
 public:
 	explicit token(const std::string& lexeme, std::pair<int, int> position = {0,0});
 
 	std::vector<std::string> token_inf();
 
-private:
-	static token_type lexeme_to_token(const std::string& lexeme);
-
-	static bool is_string(const std::string& lexeme);
-	static bool is_int(const std::string& lexeme);
-	static bool is_float(const std::string& lexeme);
 };

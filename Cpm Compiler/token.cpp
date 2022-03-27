@@ -1,10 +1,15 @@
 #include "token.h"
 #include <iostream>
 
-token::token(const std::string& lexeme, std::pair<int, int> position) :
-	lexeme(lexeme), type(lexeme_to_token(lexeme)) { this->position = position; }
+token::token(const std::string& lexeme, std::pair<int, int> position){ 
+	
+	this->position = position;
+	std::string temp_lexeme = lexeme;
+	type = lexeme_to_token(temp_lexeme);
+	this->lexeme = temp_lexeme;
+}
 
-token_type token::lexeme_to_token(const std::string& lexeme)
+token_type token::lexeme_to_token(std::string& lexeme)
 {
 	if (lexeme == "var") {
 		return token_type::VAR;
@@ -39,7 +44,11 @@ token_type token::lexeme_to_token(const std::string& lexeme)
 	if (lexeme == "\"") {
 		return token_type::QUOTE;
 	}
-	if (is_string(lexeme) || is_int(lexeme) || is_float(lexeme)) {
+	if (is_int(lexeme) || is_float(lexeme)) {
+		return token_type::LITERAL;
+	}
+	if (is_string(lexeme)) {
+		lexeme = lexeme.substr(1, lexeme.size() - 2);
 		return token_type::LITERAL;
 	}
 	return token_type::IDENTIFIER;
