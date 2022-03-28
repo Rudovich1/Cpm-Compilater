@@ -33,6 +33,10 @@ class token
 public:
 	explicit token(const std::string& lexeme, std::pair<int, int> position = {0,0});
 
-	std::vector<std::string> token_inf();
+	std::vector<std::string> token_inf() const;
+
+	const std::string& get_lexeme() const;
+	const token_type& get_type() const;
+	const std::pair<int, int>& get_position() const;
 
 };

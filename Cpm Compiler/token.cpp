@@ -94,7 +94,7 @@ bool token::is_float(const std::string& lexeme)
 	return true;
 }
 
-std::vector<std::string> token::token_inf(){
+std::vector<std::string> token::token_inf() const{
 
 	std::vector<std::string> inf(3);
 
@@ -121,4 +121,16 @@ std::vector<std::string> token::token_inf(){
 	inf[1] = lexeme;
 	inf[2] = '(' + std::to_string(position.first) + ", " + std::to_string(position.second) + ')';
 	return inf;
+}
+
+const std::string& token::get_lexeme() const{
+	return lexeme;
+}
+
+const token_type& token::get_type() const{
+	return type;
+}
+
+const std::pair<int, int>& token::get_position() const{
+	return position;
 }

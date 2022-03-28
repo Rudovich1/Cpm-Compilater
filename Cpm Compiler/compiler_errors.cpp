@@ -6,18 +6,18 @@ void compiler_errors::error_message(compiler_errors_type error_type, const std::
 
 	switch (error_type)
 	{
-		case compiler_errors_type::LEXER:{
-			error_information = "Lexical error: ";
-		}
-		case compiler_errors_type::PARSER: {
-			error_information = "Syntax error: ";
-		}
-		case compiler_errors_type::SEMANTIC: {
-			error_information = "Semantic error: ";
-		}
-		case compiler_errors_type::CODE_GENERATION: {
-			error_information = "Generation error: ";
-		}
+	case compiler_errors_type::LEXER: {
+		error_information = "Lexical error: ";
+	}
+	case compiler_errors_type::PARSER: {
+		error_information = "Syntax error: ";
+	}
+	case compiler_errors_type::SEMANTIC: {
+		error_information = "Semantic error: ";
+	}
+	case compiler_errors_type::CODE_GENERATION: {
+		error_information = "Generation error: ";
+	}
 	default:
 		error_information = "Unknown error: ";
 	}
