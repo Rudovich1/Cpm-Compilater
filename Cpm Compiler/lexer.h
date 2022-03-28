@@ -5,21 +5,19 @@
 
 class lexer
 {
-	std::string file_path;
-	std::vector<char> cpm_code;
-	std::vector<token> array_of_tokens;
+	static std::string file_path;
+	static std::vector<char> cpm_code;
+	static std::vector<token> array_of_tokens;
 
-	std::vector<token> ::iterator current_token;
-	std::pair<int, int> current_token_in_code;
-
-	std::string separate_symbols = { ' ', '\n', ';', '(', ')', '=', '+', '-', '"', '\r'};
+	static std::vector<token> ::iterator current_token;
+	static std::pair<int, int> current_token_in_code;
 
 
 public:
 
-	void generate_tokens();
+	static void generate_tokens();
 
-	explicit lexer(const std::string& file_path);
+	static void generate_lexer(const std::string& file_path);
 
-	void print_tokens();
+	static void print_tokens();
 };

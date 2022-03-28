@@ -11,9 +11,9 @@ using namespace std;
 int main() {
 	try {
 		string file_path = "code.cpm";
-		lexer lex(file_path);
-		lex.generate_tokens();
-		lex.print_tokens();
+		lexer::generate_lexer(file_path);
+		lexer::generate_tokens();
+		lexer::print_tokens();
 	}
 	catch (string error_information){
 
@@ -21,5 +21,4 @@ int main() {
 		stream_logging::to_log(error_information);
 		return -1;
 	}
-
 }
