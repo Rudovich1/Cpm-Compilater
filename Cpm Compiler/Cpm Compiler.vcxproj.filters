@@ -37,6 +37,12 @@
     <Filter Include="Исходные файлы\src">
       <UniqueIdentifier>{fc9f2033-c8d9-4b9f-b6fa-c920d6ee982a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\AST_nodes">
+      <UniqueIdentifier>{662656bf-2b1b-4ae5-bb45-c1b4471f5437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\Type mixed">
+      <UniqueIdentifier>{b161637c-2eb0-497a-9431-261457656942}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lexer.cpp">
@@ -66,6 +72,12 @@
     <ClCompile Include="cpm_compiler.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="AST_abstract_nodes.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\AST_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="mixed.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\Type mixed</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexer.h">
@@ -90,6 +102,12 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="cpm_compiler.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="AST_abstract_nodes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="mixed.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,7 @@ enum class compiler_errors_type {
     LEXER,
     PARSER,
     SEMANTIC,
+    SYNTAXER,
     CODE_GENERATION
 };
 

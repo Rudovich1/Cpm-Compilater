@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "cpm_compiler.h"
 
 using namespace std;
