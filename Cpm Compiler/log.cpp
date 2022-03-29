@@ -14,3 +14,5 @@ void stream_logging::to_log(const std::string& messange){
 	std::cout << time << ": " << messange << '\n';
 
 }
+
+

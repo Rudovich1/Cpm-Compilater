@@ -1,25 +1,13 @@
 #include <iostream>
 #include <fstream>
-#include "lexer.h"
-#include "compiler_errors.h"
-#include "log.h"
-
-#define DEBUG
+#include "cpm_compiler.h"
 
 using namespace std;
 
 int main() {
-	try {
-		string file_path = "code.cpm";
-		lexer lex(file_path);
-		lex.generate_tokens();
-		lex.print_tokens();
-	}
-	catch (string error_information){
+	string file_path = "code.cpm";
+	cpm_compiler cpm(file_path);
 
-		file_logging::to_log(error_information);
-		stream_logging::to_log(error_information);
-		return -1;
-	}
-
+	cpm.compilation();
+	cpm.lexer_data();
 }

@@ -139,16 +139,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AST.cpp" />
+    <ClCompile Include="commands.cpp" />
     <ClCompile Include="compiler_errors.cpp" />
+    <ClCompile Include="cpm_compiler.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="syntaxer.cpp" />
     <ClCompile Include="token.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AST.h" />
+    <ClInclude Include="commands.h" />
     <ClInclude Include="compiler_errors.h" />
+    <ClInclude Include="cpm_compiler.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="log.h" />
+    <ClInclude Include="syntaxer.h" />
     <ClInclude Include="token.h" />
   </ItemGroup>
   <ItemGroup>
