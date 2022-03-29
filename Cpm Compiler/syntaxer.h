@@ -2,15 +2,16 @@
 
 #include <set>
 #include <string>
+#include "cpm_compiler.h"
 
 class syntaxer {
 
-	static std::set<std::string> vals, vars;
+	std::set<std::string> vars, vals;
 
 public:
 
-	static bool is_exist_val(const std::string& lexeme);
-	static bool is_exist_var(const std::string& lexeme);
+	bool is_exist_val(const std::string& lexeme);
+	bool is_exist_var(const std::string& lexeme);
 
 };
 

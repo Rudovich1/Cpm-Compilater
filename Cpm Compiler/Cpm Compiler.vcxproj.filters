@@ -63,6 +63,9 @@
     <ClCompile Include="commands.cpp">
       <Filter>Исходные файлы\Cpm Compiler\Syntaxer</Filter>
     </ClCompile>
+    <ClCompile Include="cpm_compiler.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexer.h">
@@ -84,6 +87,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="AST.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="cpm_compiler.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
