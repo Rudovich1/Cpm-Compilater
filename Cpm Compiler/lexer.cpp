@@ -8,7 +8,6 @@ void lexer::generate_lexer(const std::string & file_path){
 
 
 	std::ifstream row_code(file_path, std::ios::binary);
-	current_token = array_of_tokens.begin();
 	current_token_in_code = { 1,1 };
 
 	if (!row_code.is_open()) {

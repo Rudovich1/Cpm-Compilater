@@ -1,23 +1,19 @@
 #pragma once
-#include "token.h"
 #include <vector>
 #include <fstream>
+#include "token.h"
 
-class lexer
-{
-	static std::string file_path;
-	static std::vector<char> cpm_code;
-	static std::vector<token> array_of_tokens;
 
-	static std::vector<token> ::iterator current_token;
-	static std::pair<int, int> current_token_in_code;
+class lexer{
 
+	std::vector<char> cpm_code;
+	std::vector<token> array_of_tokens;
+	std::pair<int, int> current_token_in_code;
 
 public:
 
-	static void generate_tokens();
-
-	static void generate_lexer(const std::string& file_path);
-
-	static void print_tokens();
+	lexer(){}
+	void generate_lexer(const std::string& file_path);
+	void generate_tokens();
+	void print_tokens();
 };
