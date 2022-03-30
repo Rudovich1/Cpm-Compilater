@@ -9,18 +9,9 @@
 #include "syntaxer.h"
 
 class cpm_compiler{
-
-	const std::string file_path;
-	lexer Lexer;
-
-	void lexer_runtime();
-	void syntaxer_runtime();
-
 public:
 
-	cpm_compiler(const std::string& file_path) : file_path(file_path){}
-	void lexer_data();
-	void compilation();
+	static void compilation(std::string file_path);
 
 };
 

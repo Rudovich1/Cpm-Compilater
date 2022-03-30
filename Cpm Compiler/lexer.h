@@ -12,8 +12,8 @@ class lexer{
 
 public:
 
-	lexer(){}
-	void generate_lexer(const std::string& file_path);
+	lexer(const std::string& file_path);
 	void generate_tokens();
+	std::vector<token>& get_tokens();
 	void print_tokens();
 };

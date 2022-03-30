@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <iostream>
 
 class virtual_mixed;
 class int_mixed;
@@ -22,6 +23,7 @@ public:
 	virtual virtual_mixed* operator- (const int_mixed& right_mixed) const = 0;
 	virtual virtual_mixed* operator- (const float_mixed& right_mixed) const = 0;
 	virtual virtual_mixed* operator- (const string_mixed& right_mixed) const = 0;
+	virtual std::ostream& operator<< (std::ostream& out) const = 0;
 
 	virtual virtual_mixed* copy() = 0;
 
@@ -45,6 +47,8 @@ public:
 	virtual_mixed* operator- (const int_mixed& right_mixed) const override;
 	virtual_mixed* operator- (const float_mixed& right_mixed) const override;
 	virtual_mixed* operator- (const string_mixed& right_mixed) const override;
+
+	std::ostream& operator<< (std::ostream& out) const override;
 
 	long long get_data() const;
 
@@ -71,6 +75,8 @@ public:
 	virtual_mixed* operator- (const float_mixed& right_mixed) const override;
 	virtual_mixed* operator- (const string_mixed& right_mixed) const override;
 
+	std::ostream& operator<< (std::ostream& out) const override;
+
 	double get_data() const;
 
 	virtual_mixed* copy();
@@ -96,6 +102,8 @@ public:
 	virtual_mixed* operator- (const float_mixed& right_mixed) const override;
 	virtual_mixed* operator- (const string_mixed& right_mixed) const override;
 
+	std::ostream& operator<< (std::ostream& out) const override;
+
 	std::string get_data() const;
 
 	virtual_mixed* copy();
@@ -105,9 +113,8 @@ class mixed {
 
 	virtual_mixed* data;
 
-	~mixed();
-
 public:
+	mixed() : data(nullptr) {}
 	mixed(long long data);
 	mixed(double data);
 	mixed(const std::string& data);
@@ -123,4 +130,11 @@ public:
 
 	void operator= (const mixed& right_mixed);
 
+	std::ostream& operator<<(std::ostream& out) const;
+	void operator>>(std::istream& in);
+
+	friend std::ostream& operator<<(std::ostream& out, const mixed& mix);
+	friend std::istream& operator>>(std::istream& in, mixed& mix);
+
+	~mixed();
 };

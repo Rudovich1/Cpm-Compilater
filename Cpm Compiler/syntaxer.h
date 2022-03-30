@@ -8,7 +8,6 @@
 
 class syntaxer {
 
-	std::set<std::string> vars, vals;
 	std::vector<token> tokens;
 	std::vector<command*> commands;
 
@@ -18,10 +17,6 @@ public:
 
 	void command_generation();
 
-	bool is_exist_val(const std::string& lexeme);
-	bool is_exist_var(const std::string& lexeme);
-
-
-
+	void print_commands();
 };
 

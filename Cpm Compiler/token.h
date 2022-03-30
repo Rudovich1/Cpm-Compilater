@@ -15,7 +15,8 @@ enum class token_type {
 	RIGHT_B, // Правая скобка
 	IDENTIFIER, // Имя
 	LITERAL, // Литерал
-	QUOTE // Кавычка
+	QUOTE, // Кавычка
+	EMPTY
 };
 
 class token
@@ -31,6 +32,7 @@ class token
 	static bool is_float(const std::string& lexeme);
 
 public:
+	token(token_type type): type(type){}
 	explicit token(const std::string& lexeme, std::pair<int, int> position = {0,0});
 
 	std::vector<std::string> token_inf() const;

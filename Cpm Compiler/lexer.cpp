@@ -4,7 +4,7 @@
 #include "token.h"
 
 
-void lexer::generate_lexer(const std::string & file_path){
+lexer::lexer(const std::string & file_path){
 
 
 	std::ifstream row_code(file_path, std::ios::binary);
@@ -40,7 +40,7 @@ void lexer::generate_tokens(){
 				array_of_tokens.push_back(token(lexeme, current_token_in_code));
 				++current_token_in_code.second;
 				lexeme.clear();
-				array_of_tokens.push_back(token(std::string(1,'\"'), current_token_in_code));
+				//array_of_tokens.push_back(token(std::string(1,'\"'), current_token_in_code));
 				quotation_open = false;
 			}
 			else {
@@ -50,7 +50,7 @@ void lexer::generate_tokens(){
 					++current_token_in_code.second;
 				}
 				lexeme.clear();
-				array_of_tokens.push_back(token(std::string(1, '\"'), current_token_in_code));
+				//array_of_tokens.push_back(token(std::string(1, '\"'), current_token_in_code));
 				lexeme += i;
 				quotation_open = true;
 			}
@@ -97,6 +97,11 @@ void lexer::generate_tokens(){
 		array_of_tokens.push_back(token(lexeme, current_token_in_code));
 		lexeme.clear();
 	}
+}
+
+std::vector<token>& lexer::get_tokens()
+{
+	return array_of_tokens;
 }
 
 void lexer::print_tokens(){

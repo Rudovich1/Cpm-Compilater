@@ -1,27 +1,27 @@
 #include "cpm_compiler.h"
 
-void cpm_compiler::lexer_runtime(){
+#define my_DEBUG
 
-	Lexer.generate_lexer(file_path);
-	Lexer.generate_tokens();
-
-}
-
-void cpm_compiler::lexer_data(){
-
-	Lexer.print_tokens();
-
-}
-
-void cpm_compiler::syntaxer_runtime(){
-	
-
-
-}
-
-void cpm_compiler::compilation(){
+void cpm_compiler::compilation(std::string file_path) {
 	try {
-		lexer_runtime();
+		lexer Lexer(file_path);
+		Lexer.generate_tokens();
+
+#ifdef my_DEBUG
+
+		Lexer.print_tokens();
+
+#endif
+
+		syntaxer Syntaxer(Lexer.get_tokens());
+		Syntaxer.command_generation();
+
+#ifdef my_DEBUG
+
+		Syntaxer.print_commands();
+
+#endif
+
 	}
 	catch (const std::string error_information) {
 

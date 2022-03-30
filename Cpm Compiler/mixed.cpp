@@ -12,6 +12,15 @@ mixed::mixed(double data)
 
 mixed::mixed(const std::string& data)
 {
+	try {
+		this->data = new int_mixed(std::stoll(data));
+	}
+	catch(std::exception) {
+		try {
+			this->data = new float_mixed(std::stod(data));
+		}
+		catch (std::exception) {}
+	}
 	this->data = new string_mixed(data);
 }
 
@@ -44,6 +53,30 @@ void mixed::operator=(const mixed& right_mixed)
 {
 	delete(data);
 	data = right_mixed.data->copy();
+}
+
+std::ostream& mixed::operator<<(std::ostream& out) const
+{
+	return this->data->operator<<(out);
+}
+
+void mixed::operator>>(std::istream& in)
+{
+	delete(data);
+	std::string temp_string;
+	in >> temp_string;
+	try {
+		this->data = new int_mixed(std::stoll(temp_string));
+	}
+	catch (std::exception) {
+		try {
+			this->data = new float_mixed(std::stod(temp_string));
+		}
+		catch (std::exception) {
+
+		}
+	}
+	this->data = new string_mixed(temp_string);
 }
 
 mixed::~mixed(){
@@ -108,6 +141,12 @@ virtual_mixed* int_mixed::operator-(const string_mixed& right_mixed) const
 		}
 	}
 	return new int_mixed(this->get_data());
+}
+
+std::ostream& int_mixed::operator<<(std::ostream& out) const
+{
+	out << this->get_data();
+	return out;
 }
 
 long long int_mixed::get_data() const
@@ -179,6 +218,12 @@ virtual_mixed* float_mixed::operator-(const string_mixed& right_mixed) const
 		}
 	}
 	return new int_mixed(this->get_data());
+}
+
+std::ostream& float_mixed::operator<<(std::ostream& out) const
+{
+	out << this->get_data();
+	return out;
 }
 
 double float_mixed::get_data() const
@@ -286,6 +331,13 @@ virtual_mixed* string_mixed::operator-(const string_mixed& right_mixed) const
 	return new int_mixed(0);
 }
 
+std::ostream& string_mixed::operator<<(std::ostream& out) const
+{
+	out << this->get_data();
+	return out;
+}
+
+
 std::string string_mixed::get_data() const
 {
 	return data;
@@ -296,3 +348,14 @@ virtual_mixed* string_mixed::copy()
 	return new string_mixed(this->get_data());
 }
 
+std::ostream& operator<<(std::ostream& out, const mixed& mix)
+{
+	mix.operator<<(out);
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, mixed& mix)
+{
+	mix.operator>>(in);
+	return in;
+}

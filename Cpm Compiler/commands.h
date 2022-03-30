@@ -15,26 +15,28 @@ enum class command_type {
 class command {
 protected:
 
-	std::string identifier;
-	virtual void tree_generation() = 0;
+	std::string identifier;   
+	virtual void code_generation() = 0; // переделать 
 
 public:
 	command(const std::string& identifier) : identifier(identifier){}
 
 	std::string get_identifier();
 
+	virtual void print() = 0;
+
 };
 
 class declaration_command : public command {
 
-
 	bool is_const;
+
 public:
 	declaration_command(bool is_const, const std::string& identifier) : is_const(is_const), command(identifier) {}
 
-	void tree_generation() override;
+	void code_generation() override; // ---
 
-
+	void print() override;
 };
 
 class assignmen_command : public command {
@@ -45,9 +47,9 @@ class assignmen_command : public command {
 public:
 	assignmen_command(bool is_const, const std::string& identifier, const std::vector<token>& tokens) : is_const(is_const), command(identifier), syntax_tree(tokens){}
 
-	void tree_generation() override;
+	void code_generation() override; //---
 
-
+	void print() override;
 };
 
 class function_command : public command {
@@ -57,5 +59,7 @@ class function_command : public command {
 public:
 	function_command(const std::string& identifier, const std::vector<token>& tokens) : syntax_tree(tokens), command(identifier) {}
 
-	void tree_generation() override;
+	void code_generation() override; //---
+
+	void print() override;
 };
