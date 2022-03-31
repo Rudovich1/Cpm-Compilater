@@ -34,17 +34,23 @@
     <Filter Include="Исходные файлы\src">
       <UniqueIdentifier>{fc9f2033-c8d9-4b9f-b6fa-c920d6ee982a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree">
+    <Filter Include="Исходные файлы\Cpm Compiler\Semanticer">
+      <UniqueIdentifier>{d08f7b15-6989-4c7a-b4d8-97a13dbe8346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Semanticer\Abstract syntax tree">
       <UniqueIdentifier>{1beba94f-f61f-453a-8137-31ef1823422a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\AST_nodes">
+    <Filter Include="Исходные файлы\Cpm Compiler\Semanticer\Abstract syntax tree\AST_nodes">
       <UniqueIdentifier>{662656bf-2b1b-4ae5-bb45-c1b4471f5437}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\Type mixed">
-      <UniqueIdentifier>{b161637c-2eb0-497a-9431-261457656942}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Cpm Compiler\Code generator">
+      <UniqueIdentifier>{ba77182a-ec26-4f42-8f19-6faeb40478c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Cpm Compiler\Sematicer">
-      <UniqueIdentifier>{d08f7b15-6989-4c7a-b4d8-97a13dbe8346}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Cpm Compiler\Cpm runtime">
+      <UniqueIdentifier>{a42129ec-0533-4620-8c8f-1595e004a290}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Cpm Compiler\Cpm runtime\Type mixed">
+      <UniqueIdentifier>{b161637c-2eb0-497a-9431-261457656942}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,22 +73,31 @@
       <Filter>Исходные файлы\src</Filter>
     </ClCompile>
     <ClCompile Include="AST.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree</Filter>
-    </ClCompile>
-    <ClCompile Include="cpm_compiler.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Cpm Compiler\Semanticer\Abstract syntax tree</Filter>
     </ClCompile>
     <ClCompile Include="AST_abstract_nodes.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\AST_nodes</Filter>
+      <Filter>Исходные файлы\Cpm Compiler\Semanticer\Abstract syntax tree\AST_nodes</Filter>
     </ClCompile>
     <ClCompile Include="mixed.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\Type mixed</Filter>
+      <Filter>Исходные файлы\Cpm Compiler\Cpm runtime\Type mixed</Filter>
     </ClCompile>
     <ClCompile Include="AST_nodes.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Syntaxer\Abstract syntax tree\AST_nodes</Filter>
+      <Filter>Исходные файлы\Cpm Compiler\Semanticer\Abstract syntax tree\AST_nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="semanticer.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Semanticer</Filter>
+    </ClCompile>
+    <ClCompile Include="cpm_compiler.cpp">
+      <Filter>Исходные файлы\Cpm Compiler</Filter>
     </ClCompile>
     <ClCompile Include="commands.cpp">
-      <Filter>Исходные файлы\Cpm Compiler\Sematicer</Filter>
+      <Filter>Исходные файлы\Cpm Compiler\Syntaxer</Filter>
+    </ClCompile>
+    <ClCompile Include="cpp_generator.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Code generator</Filter>
+    </ClCompile>
+    <ClCompile Include="cpm_runtime.cpp">
+      <Filter>Исходные файлы\Cpm Compiler\Cpm runtime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +132,15 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="AST_nodes.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="semanticer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="cpp_generator.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="cpm_runtime.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

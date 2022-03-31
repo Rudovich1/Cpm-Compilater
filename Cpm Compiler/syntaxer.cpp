@@ -1,5 +1,6 @@
 #include "syntaxer.h"
 #include <vector>
+#include <iostream>
 #include "compiler_errors.h"
 #include "commands.h"
 #include "token.h"
@@ -9,23 +10,22 @@ void syntaxer::command_generation() {
 
 	int token_iterator = 0;
 	std::vector<token> current_command, temp_command;
-	std::string temp_lexeme;
+	token temp_token;
 	
 
 	while (token_iterator < tokens.size()) 
 	{
 		temp_command.clear();
-		temp_lexeme.clear();
+		temp_token = token_type::EMPTY;
 		if (tokens[token_iterator].get_type() == token_type::VAL || tokens[token_iterator].get_type() == token_type::VAR) 
 		{
-			bool is_const = tokens[token_iterator].get_type() == token_type::VAL ? true : false;
 			if (token_iterator + 1 < tokens.size() && tokens[token_iterator + 1].get_type() == token_type::IDENTIFIER) 
 			{
 				++token_iterator;
-				commands.push_back(new declaration_command(is_const, tokens[token_iterator].get_lexeme()));
+				temp_token = tokens[token_iterator];
+				commands.push_back(new declaration_command(temp_token));
 				if (token_iterator + 1 < tokens.size() && tokens[token_iterator + 1].get_type() == token_type::EQUAL) 
 				{
-					temp_lexeme = tokens[token_iterator].get_lexeme();
 					token_iterator += 2;
 					while (token_iterator < tokens.size() && tokens[token_iterator].get_type() != token_type::SEMICOLON) 
 					{
@@ -36,7 +36,7 @@ void syntaxer::command_generation() {
 					{
 						if (!temp_command.empty()) 
 						{
-							commands.push_back(new assignmen_command(is_const, temp_lexeme, temp_command));
+							commands.push_back(new assignmen_command(temp_token, temp_command));
 							++token_iterator;
 						}
 						else 
@@ -68,7 +68,7 @@ void syntaxer::command_generation() {
 		{
 			if (token_iterator + 1 < tokens.size() && tokens[token_iterator + 1].get_type() == token_type::EQUAL) 
 			{
-				temp_lexeme = tokens[token_iterator].get_lexeme();
+				temp_token = tokens[token_iterator];
 				token_iterator += 2;
 				while (token_iterator < tokens.size() && tokens[token_iterator].get_type() != token_type::SEMICOLON) 
 				{
@@ -79,7 +79,7 @@ void syntaxer::command_generation() {
 				{
 					if (!temp_command.empty()) 
 					{
-						commands.push_back(new assignmen_command(false, temp_lexeme, temp_command));
+						commands.push_back(new assignmen_command(temp_token, temp_command));
 						++token_iterator;
 					}
 					else 
@@ -103,7 +103,7 @@ void syntaxer::command_generation() {
 			token_type temp = tokens[token_iterator].get_type();
 			if (token_iterator + 1 < tokens.size() && tokens[token_iterator + 1].get_type() == token_type::LEFT_B) 
 			{
-				temp_lexeme = tokens[token_iterator].get_lexeme();
+				temp_token = tokens[token_iterator];
 				token_iterator += 2;
 				while (token_iterator < tokens.size() && tokens[token_iterator].get_type() != token_type::RIGHT_B) 
 				{
@@ -118,7 +118,7 @@ void syntaxer::command_generation() {
 					}
 					if (token_iterator + 1 < tokens.size() && tokens[token_iterator + 1].get_type() == token_type::SEMICOLON) 
 					{
-						commands.push_back(new function_command(temp_lexeme, temp_command));
+						commands.push_back(new function_command(temp_token, temp_command));
 						token_iterator += 2;
 					}
 					else 
@@ -151,4 +151,9 @@ void syntaxer::print_commands()
 	{
 		command->print(); std::cout << '\n';
 	}
+}
+
+std::vector<command*>& syntaxer::get_commands()
+{
+	return this->commands;
 }

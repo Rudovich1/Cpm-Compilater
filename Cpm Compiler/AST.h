@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <stack>
+#include <set>
 #include "token.h"
 #include "AST_nodes.h"
 
@@ -19,4 +20,8 @@ public:
 	void AST_generation();
 
 	void print();
+
+	void semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars);
+
+	std::string generate_cpp_command();
 };

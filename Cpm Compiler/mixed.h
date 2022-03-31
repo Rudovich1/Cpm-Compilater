@@ -25,7 +25,7 @@ public:
 	virtual virtual_mixed* operator- (const string_mixed& right_mixed) const = 0;
 	virtual std::ostream& operator<< (std::ostream& out) const = 0;
 
-	virtual virtual_mixed* copy() = 0;
+	virtual virtual_mixed* copy() const = 0;
 
 };
 
@@ -52,7 +52,7 @@ public:
 
 	long long get_data() const;
 
-	virtual_mixed* copy();
+	virtual_mixed* copy() const override;
 
 };
 
@@ -79,7 +79,7 @@ public:
 
 	double get_data() const;
 
-	virtual_mixed* copy();
+	virtual_mixed* copy() const override;
 
 };
 
@@ -106,7 +106,7 @@ public:
 
 	std::string get_data() const;
 
-	virtual_mixed* copy();
+	virtual_mixed* copy() const override;
 };
 
 class mixed {
@@ -120,7 +120,7 @@ public:
 	mixed(const std::string& data);
 	mixed(virtual_mixed* data) : data(data) {}
 
-	mixed copy();
+	mixed copy() const;
 
 	mixed operator+ () const;
 	mixed operator+ (const mixed& right_mixed) const;

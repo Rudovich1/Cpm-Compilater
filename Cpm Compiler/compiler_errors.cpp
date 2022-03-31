@@ -22,7 +22,7 @@ void compiler_errors::error_message(compiler_errors_type error_type, const std::
 		error_information = "Unknown error: ";
 	}
 
-	error_information += message + "!'\n'";
+	error_information += message + "!" + '\n';
 	if (error_coordinate.first != -1) {
 		error_information += "Line: " + std::to_string(error_coordinate.first) + ", Position : " + std::to_string(error_coordinate.second);
 	}

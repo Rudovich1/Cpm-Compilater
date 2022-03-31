@@ -1,20 +1,25 @@
 #pragma once
 #include <stack>
+#include <set>
 #include "token.h"
-#include "mixed.h"
 
 class AST_abstract_node
 {
+protected:
+	token data;
 	AST_abstract_node* parent;
 
 public:
-	virtual mixed code_generation() = 0;
 
-	AST_abstract_node(AST_abstract_node* parent = nullptr);
+	AST_abstract_node(const token& data, AST_abstract_node* parent = nullptr) : data(data),  parent(parent){}
 	 
 	AST_abstract_node* get_parent();
 
 	virtual void print() = 0;
+
+	virtual void semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars) = 0;
+
+	virtual std::string generate_cpp_command() = 0;
 };
 
 class unary_AST_abstract_node : public AST_abstract_node {

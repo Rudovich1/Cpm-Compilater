@@ -136,17 +136,20 @@ void AST::postfix_form_generate()
 
 void AST::AST_generation()
 {
+	if (postfix_tokens.empty()) {
+		this->root_node = nullptr;
+	}
 	switch (postfix_tokens.top().get_type())
 	{
 	case token_type::IDENTIFIER:
 	{
-		this->root_node = new identifier_AST_node(this->postfix_tokens.top().get_lexeme());
+		this->root_node = new identifier_AST_node(this->postfix_tokens.top());
 		this->postfix_tokens.pop();
 		break;
 	}
 	case token_type::LITERAL:
 	{
-		this->root_node = new literal_AST_node(postfix_tokens.top().get_lexeme());
+		this->root_node = new literal_AST_node(this->postfix_tokens.top());
 		postfix_tokens.pop();
 		break;
 	}
@@ -171,9 +174,29 @@ void AST::AST_generation()
 	default:
 		compiler_errors::error_message(compiler_errors_type::SYNTAXER, "unknow symbol", postfix_tokens.top().get_position());
 	}
+	if (!postfix_tokens.empty()) {
+		compiler_errors::error_message(compiler_errors_type::SYNTAXER, "incorrect expression", postfix_tokens.top().get_position());
+	}
 }
 
 void AST::print()
 {
-	this->root_node->print();
+	if (this->root_node) {
+		this->root_node->print();
+	}
+}
+
+void AST::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
+{
+	if (this->root_node) {
+		this->root_node->semantic_verification(vals, vars);
+	}
+}
+
+std::string AST::generate_cpp_command() 
+{
+	if (this->root_node) {
+		return this->root_node->generate_cpp_command();
+	}
+	return "";
 }

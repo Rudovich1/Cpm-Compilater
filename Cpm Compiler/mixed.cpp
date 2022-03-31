@@ -24,7 +24,7 @@ mixed::mixed(const std::string& data)
 	this->data = new string_mixed(data);
 }
 
-mixed mixed::copy()
+mixed mixed::copy() const
 {
 	return mixed(data->copy());
 }
@@ -154,7 +154,7 @@ long long int_mixed::get_data() const
 	return data;
 }
 
-virtual_mixed* int_mixed::copy()
+virtual_mixed* int_mixed::copy() const
 {
 	return new int_mixed(this->get_data());
 }
@@ -231,7 +231,7 @@ double float_mixed::get_data() const
 	return data;
 }
 
-virtual_mixed* float_mixed::copy()
+virtual_mixed* float_mixed::copy() const
 {
 	return new float_mixed(this->get_data());
 }
@@ -343,7 +343,7 @@ std::string string_mixed::get_data() const
 	return data;
 }
 
-virtual_mixed* string_mixed::copy()
+virtual_mixed* string_mixed::copy() const
 {
 	return new string_mixed(this->get_data());
 }

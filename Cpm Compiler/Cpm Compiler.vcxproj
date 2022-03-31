@@ -145,10 +145,13 @@
     <ClCompile Include="commands.cpp" />
     <ClCompile Include="compiler_errors.cpp" />
     <ClCompile Include="cpm_compiler.cpp" />
+    <ClCompile Include="cpm_runtime.cpp" />
+    <ClCompile Include="cpp_generator.cpp" />
     <ClCompile Include="lexer.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mixed.cpp" />
+    <ClCompile Include="semanticer.cpp" />
     <ClCompile Include="syntaxer.cpp" />
     <ClCompile Include="token.cpp" />
   </ItemGroup>
@@ -159,9 +162,12 @@
     <ClInclude Include="commands.h" />
     <ClInclude Include="compiler_errors.h" />
     <ClInclude Include="cpm_compiler.h" />
+    <ClInclude Include="cpm_runtime.h" />
+    <ClInclude Include="cpp_generator.h" />
     <ClInclude Include="lexer.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="mixed.h" />
+    <ClInclude Include="semanticer.h" />
     <ClInclude Include="syntaxer.h" />
     <ClInclude Include="token.h" />
   </ItemGroup>

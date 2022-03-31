@@ -18,5 +18,7 @@ public:
 	void command_generation();
 
 	void print_commands();
+
+	std::vector<command*>& get_commands();
 };
 

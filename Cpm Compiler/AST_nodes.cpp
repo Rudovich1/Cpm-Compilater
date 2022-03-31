@@ -1,29 +1,55 @@
 #include "AST_nodes.h"
 #include <iostream>
 
-mixed literal_AST_node::code_generation()
-{
-	return mixed(this->lexeme);
-}
-
 void literal_AST_node::print()
 {
-	std::cout << '\"' << this->lexeme << '\"';
+	std::cout << '\"' << this->data.get_lexeme() << '\"';
 }
 
-mixed identifier_AST_node::code_generation()
+void literal_AST_node::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
 {
-    return mixed(); //------------ Написать хранение переменных
+	return;
+}
+
+std::string literal_AST_node::generate_cpp_command()
+{
+	try
+	{
+		std::stoll(this->data.get_lexeme());
+		return this->data.get_lexeme();
+	}
+	catch (std::exception) 
+	{
+		try 
+		{
+			std::stod(this->data.get_lexeme());
+			return this->data.get_lexeme();
+		}
+		catch (std::exception)
+		{
+
+		}
+	}
+	return '\"' + this->data.get_lexeme() + '\"';
 }
 
 void identifier_AST_node::print()
 {
-	std::cout << this->identifier;
+	std::cout << this->data.get_lexeme();
 }
 
-mixed plus_AST_node::code_generation()
+void identifier_AST_node::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
 {
-	return left_node->code_generation() + right_node->code_generation();
+	if (vals.find(this->data.get_lexeme()) == vals.end() && vars.find(this->data.get_lexeme()) == vars.end()) 
+	{
+		compiler_errors::error_message(compiler_errors_type::SYNTAXER, "Uninitialized variable", this->data.get_position());
+	}
+	return;
+}
+
+std::string identifier_AST_node::generate_cpp_command()
+{
+	return this->data.get_lexeme();
 }
 
 void plus_AST_node::print()
@@ -31,25 +57,53 @@ void plus_AST_node::print()
 	std::cout << "("; this->left_node->print(); std::cout << " + "; this->right_node->print(); std::cout << ")";
 }
 
-mixed minus_AST_node::code_generation()
+std::string plus_AST_node::generate_cpp_command()
 {
-	return left_node->code_generation() - right_node->code_generation();
+	return "(" + this->left_node->generate_cpp_command() + " + " + this->right_node->generate_cpp_command() + ")";
+}
+
+void plus_AST_node::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
+{
+	this->left_node->semantic_verification(vals, vars);
+	this->right_node->semantic_verification(vals, vars);
 }
 
 void minus_AST_node::print()
 {
-	std::cout << "("; this->left_node->print(); std::cout << " + "; this->right_node->print(); std::cout << ")";
+	std::cout << "("; this->left_node->print(); std::cout << " - "; this->right_node->print(); std::cout << ")";
 }
 
-mixed input_AST_node::code_generation()
+void minus_AST_node::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
 {
-	std::cout << next_node->code_generation();
-	mixed temp;
-	std::cin >> temp;
-	return temp;
+	this->left_node->semantic_verification(vals, vars);
+	this->right_node->semantic_verification(vals, vars);
+}
+
+std::string minus_AST_node::generate_cpp_command()
+{
+	return "(" + this->left_node->generate_cpp_command() + " - " + this->right_node->generate_cpp_command() + ")";
 }
 
 void input_AST_node::print()
 {
-	std::cout << "input("; this->next_node->print(); std::cout << ")";
+	std::cout << "input(";
+	if (this->next_node) {
+		this->next_node->print();
+	}
+	std::cout << ")";
+}
+
+void input_AST_node::semantic_verification(std::set<std::string>& vals, std::set<std::string>& vars)
+{
+	if (this->next_node) {
+		this->next_node->semantic_verification(vals, vars);
+	}
+}
+
+std::string input_AST_node::generate_cpp_command()
+{
+	if (this->next_node) {
+		return "cpm_input(" + this->next_node->generate_cpp_command() + ")";
+	}
+	return "cpm_input()";
 }
