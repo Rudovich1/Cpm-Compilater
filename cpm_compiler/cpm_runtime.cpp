@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <exception>
 
 enum class compiler_errors_type {
     LEXER,
@@ -214,54 +215,58 @@ mixed operator-(const mixed& var1, const mixed& var2)
 		}
 		if (var2.type == mixed_type::STRING)
 		{
-			try
-			{
+			try{
 				try
 				{
-					return mixed(std::stoll(var1.data.String) - std::stoll(var2.data.String));
+					try
+					{
+						return mixed(std::stoll(var1.data.String) - std::stoll(var2.data.String));
+					}
+					catch (std::exception)
+					{
+						try
+						{
+							return mixed(std::stoll(var1.data.String) - std::stod(var2.data.String));
+						}
+						catch (std::invalid_argument)
+						{
+						}
+					}
+					return mixed(std::stoll(var1.data.String));
 				}
 				catch (std::exception)
 				{
 					try
 					{
-						return mixed(std::stoll(var1.data.String) - std::stod(var2.data.String));
+						return mixed(std::stod(var1.data.String) - std::stoll(var2.data.String));
 					}
 					catch (std::exception)
 					{
+						try
+						{
+							return mixed(std::stod(var1.data.String) - std::stod(var2.data.String));
+						}
+						catch (std::exception)
+						{
+						}
 					}
+					return mixed(std::stod(var1.data.String));
 				}
-				return mixed(std::stoll(var1.data.String));
 			}
-			catch (std::exception)
-			{
+			catch(std::exception){
 				try
 				{
-					return mixed(std::stod(var1.data.String) - std::stoll(var2.data.String));
+					return mixed(-std::stoll(var2.data.String));
 				}
 				catch (std::exception)
 				{
 					try
 					{
-						return mixed(std::stod(var1.data.String) - std::stod(var2.data.String));
+						return mixed(-std::stod(var2.data.String));
 					}
 					catch (std::exception)
 					{
 					}
-				}
-				return mixed(std::stod(var1.data.String));
-			}
-			try
-			{
-				return mixed(-std::stoll(var2.data.String));
-			}
-			catch (std::exception)
-			{
-				try
-				{
-					return mixed(-std::stod(var2.data.String));
-				}
-				catch (std::exception)
-				{
 				}
 			}
 			return mixed(0);
