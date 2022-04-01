@@ -460,15 +460,23 @@ void compiler_errors::error_message(compiler_errors_type error_type, const std::
 	{
 	case compiler_errors_type::LEXER: {
 		error_information = "Lexical error: ";
+		break;
 	}
 	case compiler_errors_type::PARSER: {
 		error_information = "Syntax error: ";
+		break;
 	}
 	case compiler_errors_type::SEMANTIC: {
 		error_information = "Semantic error: ";
+		break;
 	}
 	case compiler_errors_type::CODE_GENERATION: {
 		error_information = "Generation error: ";
+		break;
+	}
+	case compiler_errors_type::SYNTAXER: {
+		error_information = "Syntaxer error: ";
+		break;
 	}
 	default:
 		error_information = "Unknown error: ";
@@ -639,7 +647,51 @@ void lexer::generate_tokens() {
 	std::string lexeme;
 
 	bool quotation_open = false;
+	int  temp_c;
 	for (auto& i : cpm_code) {
+		if (temp_c == 2)
+		{
+			if (i == '\n')
+			{
+				if (!lexeme.empty()) {
+					array_of_tokens.push_back(token(lexeme, current_token_in_code));
+				}
+				lexeme.clear();
+				++current_token_in_code.first;
+				current_token_in_code.second = 1;
+				temp_c = 0;
+				continue;
+			}
+			else 
+			{
+				continue;
+			}
+		} 
+		else if (temp_c == 1)
+		{
+			if (i == '/')
+			{
+				temp_c = 2;
+				continue;
+			}
+			else
+			{
+				lexeme = '/' + lexeme;
+				temp_c = 0;
+			}
+		}
+		else
+		{
+			if (i == '/')
+			{
+				temp_c = 1;
+				continue;
+			}
+			else
+			{
+				temp_c = 0;
+			}
+		}
 		if (quotation_open && i != '"') {
 			lexeme += i;
 			++current_token_in_code.second;
@@ -670,6 +722,11 @@ void lexer::generate_tokens() {
 			continue;
 		}
 		if (i == '\n') {
+			if (temp_c == 1)
+			{
+				lexeme = '/' + lexeme;
+				temp_c = 0;
+			}
 			++current_token_in_code.first;
 			current_token_in_code.second = 1;
 			continue;
@@ -1392,8 +1449,7 @@ int main(int argc, char* argv[]) {
 		}
 		cpp_generator Cpp_generator(Syntaxer.get_commands(), file_name);
 		Cpp_generator.generate_cpp_code();
-		system(("g++ -o " + name + " " + name + ".cpp & code.exe").c_str());
-		system(("del " + name + ".cpp").c_str());
+		system(("g++ -o " + file_path + name + " " + file_name + ".cpp & " + file_path + name +".exe").c_str());
 	}
 	catch (const std::string error_information) {
 
