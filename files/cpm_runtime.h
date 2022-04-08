@@ -3,6 +3,6 @@
 #include <iostream>
 #include "compiler_errors.h"
 
-void cpm_print(const mixed& var, char end = '\n');
+void cpm_print(const mixed& var, char end);
 mixed cpm_input();
 mixed cpm_input(const mixed& var);

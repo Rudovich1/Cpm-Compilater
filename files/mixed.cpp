@@ -167,7 +167,7 @@ mixed operator-(const mixed& var1, const mixed& var2)
 						{
 							return mixed(std::stoll(var1.data.String) - std::stod(var2.data.String));
 						}
-						catch (std::invalid_argument)
+						catch (std::exception)
 						{
 						}
 					}

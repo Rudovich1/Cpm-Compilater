@@ -17,6 +17,9 @@ void cpp_generator::generate_cpp_code()
 	{
 		cpp_file << '\t' << command->generate_cpp_command() << ";" << '\n';
 	}
+	cpp_file << "system(\"pause\");\n;";
+	cpp_file << "return(0);\n";
 	cpp_file << "}";
+	
 	cpp_file.close();
 }

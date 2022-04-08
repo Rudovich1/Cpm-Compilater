@@ -9,18 +9,27 @@ void compiler_errors::error_message(compiler_errors_type error_type, const std::
 	{
 	case compiler_errors_type::LEXER: {
 		error_information = "Lexical error: ";
+		break;
 	}
 	case compiler_errors_type::PARSER: {
 		error_information = "Syntax error: ";
+		break;
 	}
 	case compiler_errors_type::SEMANTIC: {
 		error_information = "Semantic error: ";
+		break;
 	}
 	case compiler_errors_type::CODE_GENERATION: {
 		error_information = "Generation error: ";
+		break;
+	}
+	case compiler_errors_type::SYNTAXER: {
+		error_information = "Syntax error: ";
+		break;
 	}
 	default:
 		error_information = "Unknown error: ";
+		break;
 	}
 
 	error_information += message + "!" + '\n';

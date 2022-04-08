@@ -20,3 +20,6 @@ print(numberString + answerNumber);
 val name = input("Name: ");
 
 print("Your name is " + name);
+
+print(5 + "5" - "1.1" + pi);
+print("asd" - worldString);

@@ -27,7 +27,7 @@ void lexer::generate_tokens() {
 	std::string lexeme;
 
 	bool quotation_open = false;
-	int  temp_c;
+	int  temp_c = 0;
 	for (auto& i : cpm_code) {
 		if (temp_c == 2)
 		{
