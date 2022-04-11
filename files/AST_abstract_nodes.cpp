@@ -8,6 +8,7 @@ unary_AST_abstract_node::unary_AST_abstract_node(std::stack<token>& tokens, AST_
 	generate_AST(tokens, parent);
 }
 
+// А почему у тебя файл подключается не в начале? Это плохо и должно быть перенесено на вверх!
 #include "AST_nodes.h"
 
 void unary_AST_abstract_node::generate_AST(std::stack<token>& tokens, AST_abstract_node* parent)
@@ -61,7 +62,8 @@ void unary_AST_abstract_node::generate_AST(std::stack<token>& tokens, AST_abstra
 
 unary_AST_abstract_node::~unary_AST_abstract_node()
 {
-	delete(next_node);
+   // Для delete не обязательны скобки.
+	delete(next_node); // Delete called on 'AST_abstract_node' that is abstract but has non-virtual destructor
 }
 
 binary_AST_abstract_node::binary_AST_abstract_node(std::stack<token>& tokens, AST_abstract_node* parent) : AST_abstract_node(tokens.top(), parent)

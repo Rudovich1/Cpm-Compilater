@@ -8,9 +8,11 @@ public:
 
 };
 
+// Класс не используется!
 class file_logging : logging {
 public:
 
+   // Опечатка в message.
 	static void to_log(const std::string& messange, const std::string& file_name = "log.txt");
 
 };
@@ -18,6 +20,7 @@ public:
 class stream_logging : logging {
 public:
 
+   // Опечатка в message.
 	static void to_log(const std::string& messange);
 
 };

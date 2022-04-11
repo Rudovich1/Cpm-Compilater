@@ -5,6 +5,8 @@
 #include <set>
 #include "AST.h"
 
+// Имена перечислений должно быть в CamelCase.
+// Также это перечисление не используется!
 enum class command_type {
 	DECLARATION,
 	ASSIGNMENT,
@@ -19,6 +21,7 @@ protected:
 public:
 	command(const token& data) : data(data){}
 
+   // Метод не используется!
 	std::string get_identifier();
 
 	virtual void print() = 0;

@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 
+// А почему у тебя вдруг файл в CP1251 если другие в UTF-8?
 enum class token_type {
 	VAR, // Переменная
 	VAL, // Константа

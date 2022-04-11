@@ -37,5 +37,11 @@ void compiler_errors::error_message(compiler_errors_type error_type, const std::
 		error_information += "Line: " + std::to_string(error_coordinate.first) + ", Position : " + std::to_string(error_coordinate.second);
 	}
 
+   // Плохо кидать не исключение, а строку!
+   // Здесь должно быть бросание стандартного исключения
+   // в которое передается строка.
+   // А вообще лучше сделать сам класс наследником std::exception и кидать его.
+   // И сделать метод get_message, который бы делал строку, как выше.
+   // Также скобки не нужны для throw.
 	throw(error_information);
 }

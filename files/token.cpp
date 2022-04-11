@@ -75,6 +75,7 @@ bool token::is_int(const std::string& lexeme)
 
 bool token::is_float(const std::string& lexeme)
 {
+   // Имя ге отражает сути, должно быть хотя бы wasDot.
 	bool dot = false;
 	for (auto& i : lexeme) {
 		if (i == '.') {
@@ -98,6 +99,7 @@ std::vector<std::string> token::token_inf() const{
 
 	std::vector<std::string> inf(3);
 
+   // Проблемы с форматированием.
 	switch (type){
 
 	case token_type::EQUAL: inf[0] = "EQUAL"; break;

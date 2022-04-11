@@ -5,6 +5,7 @@
 #include <stack>
 #include <set>
 
+// Имена классов должны быть в CamelCase.
 class AST_abstract_node
 {
 protected:

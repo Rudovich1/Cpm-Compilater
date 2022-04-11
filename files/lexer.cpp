@@ -5,8 +5,10 @@
 #include <iostream>
 
 lexer::lexer(const std::string & file_path){
+	// Лишние пустые строки.
 
-
+	// А зачем читать файл как бинарный? Проще считать в строку
+	// и уже по ней пробегаться в цикле.
 	std::ifstream row_code(file_path, std::ios::binary);
 	current_token_in_code = { 1,1 };
 
@@ -19,22 +21,23 @@ lexer::lexer(const std::string & file_path){
 		cpm_code.push_back(temp_ch);
 	}
 	row_code.close();
-
+	// Лишняя пустая строка.
 }
 
 void lexer::generate_tokens() {
-
+	// Лишняя пустая строка.
 	std::string lexeme;
 
 	bool quotation_open = false;
 	int  temp_c = 0;
 	for (auto& i : cpm_code) {
+		// Магические числа, лучше использовать enum чтобы код был читаемей.
 		if (temp_c == 2)
 		{
 			if (i == '\n')
 			{
 				if (!lexeme.empty()) {
-					array_of_tokens.push_back(token(lexeme, current_token_in_code));
+					array_of_tokens.push_back(token(lexeme, current_token_in_code)); // Clang-Tidy: Use emplace_back instead of push_back
 				}
 				lexeme.clear();
 				++current_token_in_code.first;
@@ -102,8 +105,10 @@ void lexer::generate_tokens() {
 			continue;
 		}
 		if (i == '\n') {
-			if (temp_c == 1)
+			// Проблема со стилем кода, здесь фигурная скобка на новой строке, в других местах на той же!
+			if (temp_c == 1) // Unreachable code
 			{
+				// Этот код недостижим.
 				lexeme = '/' + lexeme;
 				temp_c = 0;
 			}
@@ -148,6 +153,7 @@ void lexer::generate_tokens() {
 	}
 }
 
+// Проблема со стилем кода, здесь фигурная скобка на новой строке, в других местах на той же!
 std::vector<token>& lexer::get_tokens()
 {
 	return array_of_tokens;
